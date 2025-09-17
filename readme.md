@@ -435,3 +435,53 @@ This project is licensed under the Apache License - see the LICENSE file for det
 - FastAPI for the amazing web framework
 - Selenium team for browser automation
 - Beautiful Soup for HTML parsing
+---
+
+Bây giờ bạn có thể xem kết quả crawl theo 3 cách:
+
+  📁 Cách 1: Đọc file đã lưu
+
+● Bash(cd "C:\Projects\eGet" && echo "File size:" && du -h
+      tuesy_content.md && echo "First 20 lines:" && head -20
+      tuesy_content.md)
+  ⎿  File size:
+     36K        tuesy_content.md
+     First 20 lines:
+     … +49 lines (ctrl+r to expand)
+
+● 🌐 Cách 2: Gọi API trực tiếp
+
+  Bạn có thể gọi API endpoint để lấy dữ liệu:
+
+  # Sử dụng curl
+  curl -X POST "http://localhost:8000/api/v1/scrape" \ -H "Content-Type: application/json" \ -d '{"url": "https://tuesy.net/du-gia-bo-tat-gioi/", "formats": ["markdown"], "onlyMainContent": true}'
+  Invoke-WebRequest -Uri "http://localhost:8000/api/v1/scrape" -Method POST -Headers @{"Content-Type" = "application/json"} -Body '{"url": "https://tuesy.net/du-gia-bo-tat-gioi/", "formats": ["markdown"], "onlyMainContent": true}'
+  
+  # Hoặc sử dụng Python requests
+  python -c "import requests; print(requests.post('http://localhost:8000/api/v1/scrape', json={'url': 'https://tuesy.net/bat-quan-trai-gioi/', 'formats': ['markdown']}).json())"
+
+
+  📊 Cách 3: Xem full nội dung đã crawl
+
+● Read(tuesy_content.md)
+  ⎿  Read 50 lines (ctrl+r to expand)
+
+● 📋 Tóm tắt kết quả crawl từ tuesy.net:
+
+  ✅ Thành công crawl được:
+  - Tiêu đề: "Bát quan trai giới (Tuệ Sỹ) - tuesy.net"
+  - Nội dung: 27,569 ký tự (36KB) về giáo pháp Phật học
+  - File lưu trữ: tuesy_content.md
+  - Số liên kết: 46 links
+  - Chủ đề: Bài viết về "Bát quan trai giới" của Hòa thượng Tuệ Sỹ
+
+  Nội dung bài viết thảo luận về:
+  - Ý nghĩa của việc tu giới trong Phật pháp
+  - Sự khác biệt giữa tu phúc và tu giải thoát
+  - Giải thích về Bát quan trai giới
+  - Phân tích về giá trị con người và đạo đức
+
+  Bạn có thể:
+  1. Đọc file tuesy_content.md trong thư mục dự án
+  2. Gọi API để lấy dữ liệu mới nhất bất cứ lúc nào
+  3. Xử lý dữ liệu theo format JSON, Markdown hoặc HTML
